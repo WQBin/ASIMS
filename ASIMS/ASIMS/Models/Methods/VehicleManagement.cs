@@ -101,13 +101,30 @@ namespace ASIMS.Models.Methods
         /// <param name="Irank">车辆级别</param>
         /// <param name="min">最低价格</param>
         /// <param name="max">最高价格</param>
-        /// <returns></returns>
+        /// <returns></returns>已测试
         public List<Vehicle> CheckVehicleThoughMore(string type, string Ibran, string Irank, float min, float max)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    List<Vehicle> query = new List<Vehicle>();
+                    foreach(var v in dbcontext.Vehicle)
+                    {
+                        if(v.Vtype==type&&v.Vbrand==Ibran&&v.Virank==Irank&&v.Vprice>=min&&v.Vprice<=max)
+                        {
+                            query.Add(v);
+                        }
+                    }
+                    return query;
+                }
+            }
+            catch
+            {
+                return null;
+            }
             #endregion
-            return null;
         }
         /// <summary>
         /// 添加车辆到用户购物车
@@ -147,15 +164,60 @@ namespace ASIMS.Models.Methods
             #endregion
         }
         /// <summary>
+        /// 车辆库存减num
+        /// </summary>
+        /// <param name="vno">车辆号</param>
+        /// <param name="num">数量</param>
+        /// <returns></returns>已测试
+        public bool InventoryReduction(int vno,int num)
+        {
+            #region
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    var query = dbcontext.Cashlist
+                        .FirstOrDefault(c => c.Vno == vno);
+                    if (query.Vnumber > num)
+                    {
+                        query.Vnumber = query.Vnumber - num;
+                        dbcontext.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            #endregion
+        }
+        /// <summary>
         /// 进货
         /// </summary>
         /// <param name="vno">车辆编号</param>
         /// <param name="num">车辆数目</param>
-        /// <returns></returns>
+        /// <returns></returns>已测试
         public bool StockVehicle(int vno,int num)
         {
             #region
-            return false;
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    var query = dbcontext.Cashlist
+                        .FirstOrDefault(c => c.Vno == vno);
+                    query.Vnumber = query.Vnumber+num;
+                    dbcontext.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
             #endregion
         }
         /// <summary>

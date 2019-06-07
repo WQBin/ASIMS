@@ -124,7 +124,7 @@ namespace ASIMS.Models.Methods
             #endregion
         }
         /// <summary>
-        /// 审核并通过订单，即订单状态置1
+        /// 审核并通过订单，即订单状态置1,且库存减1
         /// </summary>
         /// <param name="no">订单号</param>
         /// <param name="id">销售人员id</param>
@@ -140,8 +140,15 @@ namespace ASIMS.Models.Methods
                 {
                     market.Pflag = 1;
                     market.Sphone = id;
-                    dbcontext.SaveChanges();
-                    return true;
+                    VehicleManagement vehicle = new VehicleManagement();
+                    bool isSuccess = vehicle.InventoryReduction((int)market.Vno, (int)market.Number);
+                    if (isSuccess)
+                    {
+                        dbcontext.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
                 }
                 catch (Exception)
                 {

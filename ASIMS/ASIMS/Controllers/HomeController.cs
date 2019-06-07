@@ -15,7 +15,10 @@ namespace ASIMS.Controllers
         {
             UserManagement method = new UserManagement();
             List<User> users = method.ListAllUser();
-            
+            VehicleManagement vehicle = new VehicleManagement();
+            vehicle.CheckVehicleThoughMore("皮卡", "福特", "皮卡", 25, 52);
+            //vehicle.StockVehicle(2, 5);
+            vehicle.InventoryReduction(2, 15);
             return View();
         }
     }
