@@ -16,9 +16,21 @@ namespace ASIMS.Models.Methods
         public List<Market> GetAllMarket()
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    var query = dbcontext.Market
+                        .FromSql("select * from asims.Market")
+                        .ToList();
+                    return query;
+                }
+            }
+            catch
+            {
+                return null;
+            }
             #endregion
-            return null;
         }
         /// <summary>
         /// 查询员工经手的订单
@@ -28,9 +40,22 @@ namespace ASIMS.Models.Methods
         public List<Market> GetSomeStaffMarket(string id)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    var query = dbcontext.Market
+                        .FromSql("select * from asims.Market")
+                        .Where(m => m.Sphone == id)
+                        .ToList();
+                    return query;
+                }
+            }
+            catch
+            {
+                return null;
+            }
             #endregion
-            return null;
         }
         /// <summary>
         /// 获取员工经手的订单号为no的详细信息
@@ -41,9 +66,20 @@ namespace ASIMS.Models.Methods
         public Market GetOneStaffMarket(string id, int no)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    var query = dbcontext.Market
+                        .FirstOrDefault(m => m.Sphone == id && m.Mno == no);
+                    return query;
+                }
+            }
+            catch
+            {
+                return null;
+            }
             #endregion
-            return null;
         }
         /// <summary>
         /// 查询用户的订单
@@ -104,7 +140,7 @@ namespace ASIMS.Models.Methods
                     market.Pflag = 1;
                     return true;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
                     return false;
                 }

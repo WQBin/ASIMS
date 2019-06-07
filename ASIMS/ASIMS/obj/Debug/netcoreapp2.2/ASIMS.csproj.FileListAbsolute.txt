@@ -28,3 +28,7 @@ F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\ASIMS.Views.pdb
 F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\ASIMS.dll
 F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\ASIMS.pdb
 F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\ASIMS.csproj.CopyComplete
+F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_AdminLayout.g.cshtml.cs
+F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_CustomerLayout.g.cshtml.cs
+F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_SalesLayout.g.cshtml.cs
+F:\github\ASIMS\ASIMS\ASIMS\obj\Debug\netcoreapp2.2\Razor\Views\UserAccount\Login.g.cshtml.cs

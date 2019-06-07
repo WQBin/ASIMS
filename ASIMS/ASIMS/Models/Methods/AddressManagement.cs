@@ -16,9 +16,19 @@ namespace ASIMS.Models.Methods
         public int InsertAddress(Address address)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    dbcontext.Add(address);
+                    return address.Ano;
+                }
+            }
+            catch
+            {
+                return -1;
+            }
             #endregion
-            return -1;
         }
         /// <summary>
         //根据地址号获取地址
@@ -28,9 +38,18 @@ namespace ASIMS.Models.Methods
         public Address GetOneAddress(int no)
         {
             #region
-
+            try
+            {
+                using (var db = new asimsContext())
+                {
+                    return db.Find<Address>(no);
+                }
+            }
+            catch
+            {
+                return null;
+            }
             #endregion
-            return null;
         }
         /// <summary>
         /// 根据地址号来删除地址
@@ -40,9 +59,19 @@ namespace ASIMS.Models.Methods
         public bool DeleteAddress(int no)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    dbcontext.Remove<Address>(this.GetOneAddress(no));
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
             #endregion
-            return false;
         }
         /// <summary>
         /// 修改地址信息
