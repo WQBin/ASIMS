@@ -19,7 +19,7 @@ namespace ASIMS.Models.Method
         /// <summary>
         /// 查看所有用户
         /// </summary>
-        /// <returns>所有用户</returns>
+        /// <returns>所有用户</returns>已测试
         public List<User> ListAllUser()
         {
             #region
@@ -35,7 +35,7 @@ namespace ASIMS.Models.Method
         /// 查看账号为id用户的详细信息
         /// </summary>
         /// <param name="id">用户id</param>
-        /// <returns>账号为id的用户</returns>
+        /// <returns>账号为id的用户</returns>已测试
         public User GetUserDetail(string id)
         {
             #region

@@ -28,7 +28,7 @@ namespace ASIMS.Controllers
                 return View();
             }
             else
-                return View();
+                return RedirectToAction("Index", "Home");
 
         }
 

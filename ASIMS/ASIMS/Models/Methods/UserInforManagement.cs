@@ -13,20 +13,32 @@ namespace ASIMS.Models.Methods
         /// </summary>
         /// <param name="user">用户对象</param>
         /// <param name="address">地址号</param>
-        /// <returns></returns>
+        /// <returns></returns>未测试
         public bool Register(User user, int address)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    user.Uaddress = address;
+                    dbcontext.User.Add(user);
+                    dbcontext.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
             #endregion
-            return false;
         }
         /// <summary>
         /// 处理用户的登录请求
         /// </summary>
         /// <param name="id">用户id</param>
         /// <param name="password">用户密码</param>
-        /// <returns></returns>
+        /// <returns></returns>已测试
         public bool Login(string id, string password)
         {
             #region
@@ -47,7 +59,7 @@ namespace ASIMS.Models.Methods
         /// <param name="id"></param>
         /// <param name="oldPassword"></param>
         /// <param name="newPassword"></param>
-        /// <returns></returns>
+        /// <returns></returns>已测试
         public bool NewPassword(string id, string oldPassword, string newPassword)
         {
             #region
@@ -63,7 +75,7 @@ namespace ASIMS.Models.Methods
                 }
                 else
                     return false;
-            }  
+            }
             #endregion
         }
         /// <summary>
@@ -72,13 +84,27 @@ namespace ASIMS.Models.Methods
         /// <param name="id">用户id</param>
         /// <param name="user">用户对象</param>
         /// <param name="address">地址编号</param>
-        /// <returns></returns>
+        /// <returns></returns>未测试
         public bool ModifyInformation(string id, User user, int address)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    var query = dbcontext.User
+                        .FirstOrDefault(u => u.Uphone == id);
+                    query = user;
+                    query.Uaddress = address;
+                    dbcontext.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
             #endregion
-            return false;
         }
     }
 }

@@ -13,7 +13,7 @@ namespace AdminInfor
         /// </summary>
         /// <param name="id">员工id</param>
         /// <param name="password">员工密码</param>
-        /// <returns>成功返回true</returns>
+        /// <returns>成功返回true</returns>未测试
         public bool Login(string id, string password)
         {
             #region
@@ -33,7 +33,7 @@ namespace AdminInfor
         /// <param name="id">员工id</param>
         /// <param name="oldPassword">旧密码</param>
         /// <param name="newPassword">新密码</param>
-        /// <returns>成功返回true</returns>
+        /// <returns>成功返回true</returns>未测试
         public bool NewPassword(string id, string oldPassword, string newPassword)
         {
             #region
@@ -58,7 +58,7 @@ namespace AdminInfor
         /// <param name="id">员工id</param>
         /// <param name="staff">新员工信息</param>
         /// <param name="address">员工地址号</param>
-        /// <returns></returns>
+        /// <returns></returns>未测试
         public bool ModifyInformation(string id, Staff staff, int address)
         {
             #region

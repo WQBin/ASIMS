@@ -12,7 +12,7 @@ namespace ASIMS.Models.Methods
         /// 插入地址
         /// </summary>
         /// <param name="address">地址</param>
-        /// <returns>地址编号</returns>
+        /// <returns>地址编号</returns>未测试
         public int InsertAddress(Address address)
         {
             #region
@@ -34,7 +34,7 @@ namespace ASIMS.Models.Methods
         //根据地址号获取地址
         /// </summary>
         /// <param name="no">地址号</param>
-        /// <returns>地址</returns>
+        /// <returns>地址</returns>未测试
         public Address GetOneAddress(int no)
         {
             #region
@@ -55,7 +55,7 @@ namespace ASIMS.Models.Methods
         /// 根据地址号来删除地址
         /// </summary>
         /// <param name="no">地址号</param>
-        /// <returns>成功返回true</returns>
+        /// <returns>成功返回true</returns>未测试
         public bool DeleteAddress(int no)
         {
             #region
@@ -78,13 +78,26 @@ namespace ASIMS.Models.Methods
         /// </summary>
         /// <param name="no">地址号</param>
         /// <param name="address">新地址</param>
-        /// <returns></returns>
-        public bool ModifyAddress(string no,Address address)
+        /// <returns></returns>未测试
+        public bool ModifyAddress(int no,Address address)
         {
             #region
-
+            try
+            {
+                using (var dbcontext = new asimsContext())
+                {
+                    var query = dbcontext.Address
+                        .FirstOrDefault(a => a.Ano == no);
+                    query = address;
+                    dbcontext.SaveChanges();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
             #endregion
-            return false;
         }
     }
 }
